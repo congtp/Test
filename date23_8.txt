@@ -1,0 +1,21 @@
+###C++
+## maps
+- in map, when we insert the value with the same key, it will be ignored.
+
+
+## const, macro, inline
+
+
+
+## deque
+- we can treat a deque like a double linked list, so it can be manipulate from both of the side.
+- some useful syntax for deque:
+	- deque<int> mydeque; //Creates a double ended queue of deque of int type
+	- int length = mydeque.size(); //Gives the size of the deque
+	- mydeque.push_back(1); //Pushes element at the end
+	- mydeque.push_front(2); //Pushes element at the beginning
+	- mydeque.pop_back(); //Pops element from the end
+	- mydeque.pop_front(); //Pops element from the beginning
+	- mydeque.empty() //Returns a boolean value which tells whether the deque is empty or not
+- if we have an array, we can create a subdeque with specific element from that array by:
+	std::deque <int> deques (arr, arr + k);
