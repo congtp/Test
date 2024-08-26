@@ -48,6 +48,62 @@ we dont have to manage many things like process
 - so in RTOS, since most MCUs have one core, so we can assume that we only have one process,
 and any thread create in the process(main()), can be treat like a lightweight process.
 
+## Multithreading in C++
+# there is some way to create the thread in C++
+- 1. Function Pointers
+  - Example:
+    void fun(int x){} // outside main
+    std::thread t1(func, x); // inside main
+- 2. Lambda Functions
+  - Example:
+    auto fun = [](int x){}; // inside main
+    std::thread t2(fun, x); // inside main
+- 3. Funtors
+  - Example:
+    class Base{ // outside main
+      void operator()(int x){} 
+    };
+    std::thread t1((Base()), x);  // inside main
+- 4. Members function
+  - Example:
+    class Base{
+      void fun(int x){}
+    };
+    Base b;
+    std::thread t1 (&Base::fun, &b, 10);
+
+- 5. Static Member Functions
+  - Example:
+    class Base{
+      static void fun(int x){}
+    };
+    std::thread t1 (&Base::fun, 10);
+
+- <note> <the important of the join>:
+  - Once thread is started we wait for this thread to finish by calling the join() function
+  on thread object
+  - Double join will result into program termination
+    - Example: we call t1.join() 2 times
+  - It is good practice for check if the thread is joinable before joining. (using joinable())
+
+## Mutex
+# Race Condition
+- Race Condition is the situation where two or more threads happended to change a common data
+at the same time.
+- If there is a race condition then we have to protect it and the protected section is called 
+critical section
+
+# Mutex:
+- Mutex is used to avoid race condition
+- We use lock(), unlock() on mutext to avoid race condition
+- <std::mutex::try_lock>
+  - Try_lock try to lock the mutex. Return immediately. Onsuccessful lock will return trues,
+  otherwise return false.
+  - If try lock() is not able to lock mutex, then it doesn't get blocked that 's why it is called
+  non-blocking
+  - If try lock() 
+
+
 
 ## Exercise 2
 
@@ -98,6 +154,19 @@ we have a struct IntList:
       - prevNode->next = node[index]->next;
       - node[index]->next = nullptr
       - delete node[index]
+
+
+## Exercise 3
+- to open the file in cpp, we use std::ifstream
+- <note>: when we want to flush the input out the std::cout, we have to add the std::endl
+  - example: 
+    while(getline(fp1, temp)){
+      std::cout << temp << std::endl;
+    }
+  - <note about the endl>, in c++, the endl do more than just the '\n', it force to flush
+  all the data to the stdout
+  
+  
 
       
 
