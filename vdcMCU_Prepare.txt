@@ -1,0 +1,20 @@
+2 làm thế nào để nhận biết mức 0 và 1?
+- theo em biết thì trong mỗi chuẩn giao tiếp sẽ có cách nhận biết mức 0 và 1 khác nhau,
+nhưng chung quy thì vẫn dựa trên VIH, VIL
+	- ví dụ trong TTL:
+		- logic 0: VIL từ 0-0.8 V
+		- logic 1: VIH từ 2-5 V
+	- trong CMOS:
+		- logic 0: VIL từ 0 - 0.3Vcc
+		- logic 1: VIH từ 0.7VCC - VCC
+		
+#TTL
+- TTL dùng BJT (Transistor) để thực hiện các mức 0 và 1.
+# CMOS 
+- CMOS dùng MOSFET để thực hiện các logic 0 và 1
+- tiêu thực điện năng thấp
+
+3 MSB/LSB trong khung truyền của SPI
+- mặc định SPI sẽ truyền LSB trước:
+master: A7 A6 A5 A4 A3 A2 A1 A0		slave: B7 B6 B5 B4 B3 B2 B1 B0
+- 
